@@ -116,6 +116,9 @@ CCFLAGS += 			\
 	-mtext-section-literals
 #	-Wall			
 
+# for cal_dex - exception debugging
+LDFLAGS += -Wl,--undefined=_xtos_set_exception_handler -Wl,--wrap=_xtos_set_exception_handler
+
 CFLAGS = $(CCFLAGS) $(DEFINES) $(EXTRA_CCFLAGS) $(INCLUDES)
 DFLAGS = $(CCFLAGS) $(DDEFINES) $(EXTRA_CCFLAGS) $(INCLUDES)
 

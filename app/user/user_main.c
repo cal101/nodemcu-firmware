@@ -115,6 +115,8 @@ void nodemcu_init(void)
     // NODE_DBG("Flash sec num: 0x%x\n", flash_get_sec_num());
     task_init();
     system_os_post(USER_TASK_PRIO_0,SIG_LUA,'s');
+    // provoke Exception(29) writing the value 0xdeadbeaf to memory location 0x1020
+    //*((int*)(0x1020)) = 0xdeadbeaf;
 }
 
 /******************************************************************************
@@ -133,7 +135,8 @@ void user_init(void)
 #ifdef DEVELOP_VERSION
     uart_init(BIT_RATE_74880, BIT_RATE_74880);
 #else
-    uart_init(BIT_RATE_9600, BIT_RATE_9600);
+    uart_init(BIT_RATE_115200, BIT_RATE_115200);
+    //uart_init(BIT_RATE_9600, BIT_RATE_9600);
 #endif
     // uart_init(BIT_RATE_115200, BIT_RATE_115200);
     
